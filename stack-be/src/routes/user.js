@@ -167,7 +167,6 @@ router.get("/locate", async (req, res) => {
 		const userId = item.userId ? item.userId : "";
 		const n = item.n ? parseInt(item.n) : 0;
 		const sql = `SELECT id , firstname , lastname , age , coordinate from user WHERE  coordinate > ( SELECT coordinate FROM user WHERE  id = ?) order by coordinate  asc limit ?`;
-		console.log("sql = ", sql);
 		query(sql, [userId, n], (err, result) => {
 			if (!err) {
 				res.status(200).json({ status: true, items: result });
