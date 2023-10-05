@@ -37,7 +37,7 @@ router.post("/add", (req, res) => {
 			UserModel.create(item)
 				.then(rs => {
 					if (parseInt(rs.affectedRows) > 0) {
-						res.status(200).json({ status: true });
+						res.status(200).json({ status: true, message: "Add user successfully", insert_id: item.id });
 					} else {
 						res.status(200).json({ status: false });
 					}
@@ -64,7 +64,7 @@ router.get("/read", async (req, res) => {
 		const id = item.id;
 		const sql = "SELECT id , firstname , lastname , age , coordinate  FROM user WHERE id = ?";
 		query(sql, [id], (err, result) => {
-			if (result && result.length > 0) {
+			if (!err) {
 				res.status(200).json({ status: true, item: result[0] });
 			} else {
 				dataMsg.push(err.message);
@@ -77,7 +77,7 @@ router.get("/read", async (req, res) => {
 	}
 });
 /*
-3. Get user information
+3. Search user information
 */
 router.get("/search", async (req, res) => {
 	let dataMsg = [];
@@ -93,7 +93,7 @@ router.get("/search", async (req, res) => {
 		}
 		const sql = "SELECT id , firstname , lastname , age , coordinate FROM user WHERE " + queryWhere + " 1 = 1 order by firstname desc";
 		query(sql, params, (err, result) => {
-			if (result && result.length > 0) {
+			if (!err) {
 				res.status(200).json({ status: true, items: result });
 			} else {
 				dataMsg.push(err.message);
@@ -108,7 +108,7 @@ router.get("/search", async (req, res) => {
 /*
 4. Edit user information
 */
-router.post("/edit/:id", (req, res) => {
+router.put("/edit/:id", (req, res) => {
 	let dataMsg = [];
 	try {
 		let item = Object.assign({}, req.body);
@@ -120,9 +120,9 @@ router.post("/edit/:id", (req, res) => {
 			UserModel.update(item)
 				.then(rs => {
 					if (parseInt(rs.affectedRows) > 0) {
-						res.status(200).json({ status: true });
+						res.status(200).json({ status: true, message: "Update item successfully" });
 					} else {
-						res.status(200).json({ status: false });
+						res.status(200).json({ status: false, message: "No item updated" });
 					}
 				})
 				.catch(err => {
@@ -140,18 +140,16 @@ router.post("/edit/:id", (req, res) => {
 /*
 5. Delete user by id
 */
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/edit/:id", async (req, res) => {
 	let dataMsg = [];
 	try {
 		const id = req.params.id ? req.params.id : "";
 		const sql = "delete from user where id = ?";
 		query(sql, [id], (err, dataResult) => {
-			if (dataResult.affectedRows) {
-				dataMsg.push("Delete successfully");
-				res.status(200).json({ status: true });
+			if (dataResult.affectedRows > 0) {
+				res.status(200).json({ status: true, message: "Delete item successfully" });
 			} else {
-				dataMsg.push("Delete fail");
-				res.status(200).json({ status: false });
+				res.status(200).json({ status: false, message: "No item deleted" });
 			}
 		});
 	} catch (err) {
@@ -160,23 +158,18 @@ router.delete("/delete/:id", async (req, res) => {
 	}
 });
 /*
-7. Search advanced user
+6. Search advanced user
 */
 router.get("/locate", async (req, res) => {
 	let dataMsg = [];
 	try {
 		const item = Object.assign({}, req.query);
-		let where = [];
-		let params = [];
-		let queryWhere = "";
-		if (item.keyword) {
-			where.push(`firstname LIKE '%${item.keyword}%'`);
-			where.push(`lastname LIKE '%${item.keyword}%'`);
-			queryWhere = ` ( ${where.join(" OR ")} ) AND `;
-		}
-		const sql = "SELECT id , firstname , lastname , age , coordinate FROM user WHERE " + queryWhere + " 1 = 1 order by firstname desc";
-		query(sql, params, (err, result) => {
-			if (result && result.length > 0) {
+		const userId = item.userId ? item.userId : "";
+		const n = item.n ? parseInt(item.n) : 0;
+		const sql = `SELECT id , firstname , lastname , age , coordinate from user WHERE  coordinate > ( SELECT coordinate FROM user WHERE  id = ?) order by coordinate  asc limit ?`;
+		console.log("sql = ", sql);
+		query(sql, [userId, n], (err, result) => {
+			if (!err) {
 				res.status(200).json({ status: true, items: result });
 			} else {
 				dataMsg.push(err.message);

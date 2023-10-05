@@ -11,7 +11,7 @@ services:
       MYSQL_ROOT_PASSWORD: izihelp246
       MYSQL_DATABASE: my_izihelp            
     volumes:
-        - my-datavolume:/var/lib/mysql        
+      - my-datavolume:/var/lib/mysql        
     networks:
       - bridge   
     ports:
