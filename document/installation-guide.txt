@@ -1,5 +1,5 @@
 1. Clone source from https://github.com/trietnk01/my-izihelp.git
-2. Here ./my-izihelp folder run command line docker compose -p my-izihelp up -d
+2. At ./my-izihelp folder run command line docker compose -p my-izihelp up -d
 3. Information mysql user
 MYSQL_LOCALHOST: localhost
 MYSQL_PORT: 3307
@@ -8,4 +8,5 @@ MYSQL_ROOT_PASSWORD: izihelp246
 MYSQL_DATABASE: my_izihelp      
 4. Restore database from ./database/my-izihelp.sql
 5. At ./stack-be run command line npm run dev
-6. Run http://localhost:7001
+6. Access postman http://localhost:7001
+7. Restore User.postman_collection.json to postman created by myself for checking data

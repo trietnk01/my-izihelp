@@ -1,0 +1,140 @@
+{
+	"info": {
+		"_postman_id": "38180179-e755-4b3f-b80b-86d270ae58d3",
+		"name": "User",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "22358532",
+		"_collection_link": "https://orange-shadow-313239.postman.co/workspace/My-Izihelp~1a77f019-81cf-45ff-a475-b8592afd5bff/collection/22358532-38180179-e755-4b3f-b80b-86d270ae58d3?action=share&source=collection_link&creator=22358532"
+	},
+	"item": [
+		{
+			"name": "Add",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"firstname\":\"Nga\",\r\n        \"lastname\": \"Đỗ Thị Hồng\",\r\n        \"age\": 28,\r\n        \"coordinate\": \"576:281\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/api/user/add"
+			},
+			"response": []
+		},
+		{
+			"name": "Get User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/user/read?id=90af2535-926d-4ffa-aa37-2f507ee835ae",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"read"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "90af2535-926d-4ffa-aa37-2f507ee835ae"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/user/search?keyword=Đào",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"search"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": "Đào"
+						},
+						{
+							"key": "lastname",
+							"value": "Trương Thị",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n        \"coordinate\":\"261:371\"        \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "{{base_url}}/api/user/edit/3007644c-9f24-4966-833c-4a60f27ff8fb"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "{{base_url}}/api/user/edit/52af8cfd-e2be-43af-91af-d58ab7003703"
+			},
+			"response": []
+		},
+		{
+			"name": "Locate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/user/locate?userId=265f8f23-703f-4a85-be39-467abedfa2e1&n=10",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"user",
+						"locate"
+					],
+					"query": [
+						{
+							"key": "userId",
+							"value": "265f8f23-703f-4a85-be39-467abedfa2e1"
+						},
+						{
+							"key": "n",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
