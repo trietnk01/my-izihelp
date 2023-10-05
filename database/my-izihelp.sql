@@ -38,7 +38,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES ('265f8f23-703f-4a85-be39-467abedfa2e1','Hạnh','Đào Thị',25,'402:190'),('3007644c-9f24-4966-833c-4a60f27ff8fb','Anh','Đỗ Thị Hoàng',28,'261:371'),('90af2535-926d-4ffa-aa37-2f507ee835ae','Vân','Bùi Thị',28,'980:234'),('cc7cedb1-15d6-45f7-a2d4-db353573a2bd','Linh','Lê Thị Thuý',28,'709:281'),('e145a741-5554-4161-9e82-2aef1c69cf61','Đạt','Lý Văn',24,'333:444');
+INSERT INTO `user` VALUES ('265f8f23-703f-4a85-be39-467abedfa2e1','Hạnh','Đào Thị',25,'402:190'),('3007644c-9f24-4966-833c-4a60f27ff8fb','Anh','Đỗ Thị Hoàng',28,'261:371'),('642908d0-fba1-48d0-82a7-28984bc0cd24','Nga','Đỗ Thị Hồng',28,'576:281'),('90af2535-926d-4ffa-aa37-2f507ee835ae','Vân','Bùi Thị',28,'980:234'),('cc7cedb1-15d6-45f7-a2d4-db353573a2bd','Linh','Lê Thị Thuý',28,'709:281'),('e145a741-5554-4161-9e82-2aef1c69cf61','Đạt','Lý Văn',24,'333:444'),('f4ccfff0-8b4d-4eff-82d2-aafd0882b2e7','Hoàng','Vương Thị',28,'124:582');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -55,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-05 15:26:12
+-- Dump completed on 2023-10-05 15:29:25
